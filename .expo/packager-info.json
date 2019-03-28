@@ -1,0 +1,10 @@
+{
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 49099,
+  "expoServerNgrokUrl": "https://vu-tv2.anonymous.coopapps.exp.direct",
+  "packagerNgrokUrl": "https://packager.vu-tv2.anonymous.coopapps.exp.direct",
+  "ngrokPid": 49116,
+  "webpackServerPort": null
+}
