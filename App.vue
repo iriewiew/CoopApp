@@ -83,10 +83,20 @@
   </nb-container>
   <!-- หน้าแสดงกิจกรรม -->
   <nb-container v-else-if="page == 2">
-    <nb-content style=" margin-top: 10%; ">
-      <nb-button transparent dark :onPress="homePage">
+    <nb-header transparent>
+      <nb-left>
+      </nb-left>
+      <nb-body>
+        <nb-title class="Header">กิจกรรมทั้งหมด</nb-title>
+      </nb-body>
+      <nb-right>
+        <nb-button transparent dark :onPress="homePage">
         <nb-icon type="AntDesign" name="closecircleo"/>
       </nb-button>
+      </nb-right>
+    </nb-header>
+    <nb-content style=" margin-top: 5%; ">
+     
       <text>กิจกรรม</text>
     </nb-content>
   </nb-container>
@@ -101,6 +111,7 @@ import { VueNativeBase } from "native-base";
 import logo from "./assets/128x128.png";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import { Alert } from 'react-native';
 
 Vue.use(VueAxios, axios);
 Vue.use(VueNativeBase);
@@ -144,7 +155,16 @@ export default {
         .post(apiURL, this.ruleForm)
         .then(response => {
           this.Alldata = response.data;
-
+if (response.data.error == "Not found 404")  {
+             Alert.alert(
+                'เกิดข้อผิดพลาด',
+                'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง โปรดลองใหม่อีกครั้ง',
+                [
+                    {text: 'ตกลง', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            );
+}
           // this.login = false;
         })
         .catch(err => {
@@ -220,6 +240,10 @@ export default {
   font-size: 30;
   text-align: center;
   color: white;
+}
+.Header {
+  font-size: 20;
+  text-align: center;
 }
 .HomeHead {
   margin-top: 10px;
